@@ -21,13 +21,16 @@ function main(){
   var botwinsgame = true;
 
   //ask user for gamemode
-  var gamemode = prompt("What mode do you want to play?", "Type 'single' for single round mode or 'three' for best out of three mode.").toLowerCase();
+  var gamemode = prompt("What mode do you want to play?", "Type 'single' for single round mode or 'three' for best out of three mode.");
 
   //process response for gamemode
-  if ( (gamemode == null || gamemode == "") || (gamemode != "single" && gamemode != "three") ) { //invalid response
+  if ( (gamemode == null || gamemode == "") ) { //invalid response
     alert("Invalid response.");
     return;
-  } else if (gamemode == "single") {
+  } else if ((gamemode.toLowerCase() != "single" && gamemode.toLowerCase() != "three")) {
+    alert("Invalid response.");
+    return;
+  } else if (gamemode.toLowerCase() == "single") {
     multiround = false;
   } else {
     multiround = true;
@@ -37,12 +40,15 @@ function main(){
   //loop until game is over. loop once regardless.
   do {
     //prompt user and turn to lower case
-    var input = prompt("Type 'rock' 'paper' or 'scissors'. ", "rock / paper /scissors").toLowerCase();
+    var input = prompt("Type 'rock' 'paper' or 'scissors'. ", "rock / paper /scissors");
 
     //process response
-    if ( (input == null || input == "") || (input != "rock" && input != "scissors" && input != "paper") ) { //invalid response
+    if ( (input == null || input == "") ) { //invalid response
+      alert("Invalid response.");
+    } else if ((input.toLowerCase() != "rock" && input.toLowerCase() != "scissors" && input.toLowerCase() != "paper")) {
       alert("Invalid response.");
     } else { //play game
+      input = input.toLowerCase();
       bot = randomOutput();
 
       //detwermine if bot wins
